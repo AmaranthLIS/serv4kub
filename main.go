@@ -5,9 +5,9 @@ package main
 import (
     "net/http"
     "github.com/rs/zerolog/log"
-    "play4j/devkub/handlers"
+    "play4j/serv4kub/handlers"
     "os"
-    "play4j/devkub/version"
+    "play4j/serv4kub/version"
     "os/signal"
     "syscall"
     "context"
