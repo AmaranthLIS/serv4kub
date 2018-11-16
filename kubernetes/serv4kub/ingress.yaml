@@ -12,7 +12,7 @@ spec:
     serviceName: {{ .ServiceName }}
     servicePort: 80
   rules:
-  - host: get-ip.com
+  - host: revealip.net
     http:
       paths:
       - path: /

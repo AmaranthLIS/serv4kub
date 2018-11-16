@@ -14,9 +14,12 @@ CONTAINER_IMAGE?=docker.io/${CONTAINER_IMAGE_NAME}
 GOOS?=linux
 GOARCH?=amd64
 
-
+.DEFAULT_GOAL := prepare
 
 # ----- ----- ----- ----- -----
+prepare:
+	@echo "Choose command: \n build \n container \n run \n test \n push \n minikube"
+
 clean:
 	rm -f ${APP}
 
@@ -51,7 +54,9 @@ minikube: push
 	for t in $(shell find ./kubernetes/serv4kub -type f -name "*.yaml"); do \
         cat $$t | \
         	gsed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
-        	gsed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g"; \
-        echo ---; \
+        	gsed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g";  \
+        echo "\n---"; \
     done > tmp.yaml
+
+#	cat tmp.yaml
 	kubectl apply -f tmp.yaml
